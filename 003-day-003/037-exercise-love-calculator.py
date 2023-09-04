@@ -60,9 +60,6 @@ name2 = input("What is their name? \n")
 names = name1 + name2
 names = names.lower()
 
-
-print(names)
-
 true = 0
 love = 0
 score = 0
@@ -76,10 +73,7 @@ love += names.count("o")
 love += names.count("v")
 love += names.count("e")
 
-true = str(true)
-love = str(love)
-score = true + love
-score = int(score)
+score = int(str(true) + str(love))
 
 if score <= 10 or score >= 90:
     print(f"Your score is {score}, you go together like coke and mentos.")
