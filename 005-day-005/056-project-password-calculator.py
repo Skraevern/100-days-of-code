@@ -12,7 +12,7 @@ number_choice = input("Should the password contain numbers? Y or N ").lower()
 
 
 for i in range(1, password_length + 1):
-    character_list_random = random.randint(0, 4)
+    character_list_random = random.randint(0, 4) # 4 to make most character letters. 
     if character_list_random == 0 and symbol_choice == "y":
         character_random = random.randint(0, len(symbols) - 1)
         password += symbols[character_random]
