@@ -30,7 +30,7 @@ total_height = 0
 for i in student_heights:
   total_height += i
 
-average_height = round(total_height / len(student_heights))
+average_height = round(total_height / length)
 
 print(average_height)
 
