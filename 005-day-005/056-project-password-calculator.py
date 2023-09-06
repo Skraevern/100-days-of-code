@@ -5,14 +5,13 @@ symbols = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '/', '(', ')', '_',
 numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 password = ""
 
-print("Welcome to password creator!")
-password_length = int(input("How long do you want the password do be? "))
+print("Welcome to PyPassword Generator!")
+password_length = int(input("How many letters do you want in the password: "))
 symbol_choice = input("Should the password contain symbols? Y or N ").lower()
 number_choice = input("Should the password contain numbers? Y or N ").lower()
 
 
-
-for i in range(1, password_length):
+for i in range(1, password_length + 1):
     character_list_random = random.randint(0, 4)
     if character_list_random == 0 and symbol_choice == "y":
         character_random = random.randint(0, len(symbols) - 1)
@@ -25,4 +24,3 @@ for i in range(1, password_length):
         password += alphabet[character_random]
 
 print(password)
-        
