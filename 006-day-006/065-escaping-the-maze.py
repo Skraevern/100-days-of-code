@@ -16,3 +16,39 @@ while at_goal() == False:
         turn_left()
 
 """
+
+#problem world 1 2 and 3
+
+"""
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+counter = 0
+
+while at_goal() == False:
+    if wall_on_right() == False:
+        if counter < 8:
+            turn_right()
+            move()
+            counter += 1
+        else:
+            if front_is_clear():
+                while front_is_clear():
+                    move()
+                turn_left()
+                counter = 0
+            else:
+                turn(left)
+                while front_is_clear():
+                    move()
+                counter = 0
+    elif front_is_clear():
+            move()
+            counter = 0
+    else:
+        turn_left()
+            counter = 0
+
+"""
