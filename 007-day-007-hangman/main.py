@@ -42,6 +42,6 @@ while end_game == False:
             print("You win!")
         if lives == 0:
             end_game = True
-            print("You loose...")
+            print(f'You loose... The word was "{solution_word}"')
     else:
         print("Please enter one letter.")
