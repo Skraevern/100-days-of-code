@@ -1,7 +1,8 @@
 import random
 import stages
+import hangman_words
 
-word_list = ["ardvark", "baboon", "camel"]
+word_list = hangman_words.words
 solution_word = random.choice(word_list)
 display = []
 end_game = False
