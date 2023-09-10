@@ -1,7 +1,10 @@
+import art
+
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 direction = ""
 text = ""
 shift = ""
+again = "yes"
 
 def user_inputs():
     global direction, text, shift
@@ -25,12 +28,15 @@ def caesar(string, shift_amount, direction):
                     while i + shift_amount <= -1:
                         shift_amount += 26
                     encrypted_text += alphabet[i - shift_amount]
+                
     print(f'The {direction}d text is "{encrypted_text}"')
         
-
-user_inputs()
-
-caesar(text, shift, direction)
+print(art.logo)
+while again == "yes":
+    user_inputs()
+    caesar(text, shift, direction)
+    again = input('Type "yes" if you want to go again. Type "no" if you want to quit. ')
+print("Goodbye")
 
 #TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 
