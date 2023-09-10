@@ -2,8 +2,7 @@ import random
 import hangman_art
 import hangman_words
 
-word_list = hangman_words.words
-solution_word = random.choice(word_list)
+solution_word = random.choice(hangman_words.words)
 already_guessed = []
 display = []
 end_game = False
