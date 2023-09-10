@@ -16,19 +16,23 @@ def user_inputs():
     shift = int(input("Type the shift number:\n"))
 
 def caesar(string, shift_amount, direction):
+    
     encrypted_text = ""
     for letter in string:
-        for i in range(0, len(alphabet)):
-            if letter == alphabet[i]:
-                if direction == "encode":
-                    while i + shift_amount >= 26:
-                        shift_amount -= 26
-                    encrypted_text += alphabet[i + shift_amount]
-                if direction == "decode":
-                    while i + shift_amount <= -1:
-                        shift_amount += 26
-                    encrypted_text += alphabet[i - shift_amount]
-                
+        if letter not in alphabet:
+            encrypted_text += str(letter)
+        else:  
+            for i in range(0, len(alphabet)):
+                if letter == alphabet[i]:
+                    if direction == "encode":
+                        while i + shift_amount >= 26:
+                            shift_amount -= 26
+                        encrypted_text += alphabet[i + shift_amount]
+                    if direction == "decode":
+                        while i + shift_amount <= -1:
+                            shift_amount += 26
+                        encrypted_text += alphabet[i - shift_amount]
+  
     print(f'The {direction}d text is "{encrypted_text}"')
         
 print(art.logo)
