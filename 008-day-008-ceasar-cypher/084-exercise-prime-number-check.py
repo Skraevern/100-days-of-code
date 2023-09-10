@@ -16,14 +16,21 @@
 #Write your code below this line 👇
 def prime_checker(number):
     is_prime = True
-    for i in range(2, number - 1):
+    for i in range(2, number - 1): # 2, 3, 4, 5, 6
         if number % i == 0:
            is_prime = False
     if is_prime == True:
        print("It's a prime number.")
     else:
        print("It's not a prime number.")
-  
+   
+# number = 7
+# 7 / 2 = 3,5 
+# 7 / 3 = 2,33
+# 7 / 4 = 1,75
+# 7 / 5 = 1,4
+# 7 / 6 = 1,17
+# Altså kun delbart i hele tall med seg seg selv(7) og 1 = Primtall
 
 #Write your code above this line 👆
     
