@@ -13,6 +13,9 @@
 
 
 def is_leap(year):
+    """Takes year as input. If devided by 4 is hole int, 
+    divided by 100 is whole int, and by 400. 
+    Than its a leap year"""
     if year % 4 == 0:
         if year % 100 == 0:
             if year % 400 == 0:
@@ -26,6 +29,8 @@ def is_leap(year):
 
 
 def days_in_month(year, month):
+    """Taks year and month as input. Checks if month is between 1 and 12.
+    calls is_leap() with year. If true adds 1 to february"""
     if month > 12 or month < 1:
         return "Invalid month input"
     month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
