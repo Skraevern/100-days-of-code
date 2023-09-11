@@ -16,7 +16,8 @@ def user_inputs():
     shift = int(input("Type the shift number:\n"))
 
 def caesar(string, shift_amount, direction):
-    
+    """Takes inputs and shift each letter. 
+    Can take two different shift directions"""
     encrypted_text = ""
     for letter in string:
         if letter not in alphabet:

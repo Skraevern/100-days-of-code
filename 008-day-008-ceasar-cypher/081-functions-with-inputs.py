@@ -8,6 +8,7 @@ greet()
 
 # input function
 def greet_with_name(name):
+    """Prints with name input"""
     print(f"Hello {name}!")
     print(f"How do you do {name}?")
 
@@ -15,6 +16,7 @@ greet_with_name("Lars")
 
 # function with more than 1 input
 def greet_with(name, location):
+    """Print with name and location input"""
     print(f"Hello {name}!")
     print(f"What is the weather like in {location}?")
 

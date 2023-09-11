@@ -7,12 +7,15 @@ winner = ""
 winning_bid = 0
 
 def bidders():
+    """Asks for input and saves name and 
+    bid amount as dictionary in bidding_list"""
     bidder = {}
     bidder["name"] = input("What is your name? ")
     bidder["bid"] = int(input("What's tour bid: $"))
     bidding_list.append(bidder)
 
 def check_winner():
+    """Checks which bid is highest and saves it in variables"""
     global winning_bid, winner
     for i in range(0, len(bidding_list)):
         if int(bidding_list[i]["bid"]) > int(winning_bid):

@@ -22,6 +22,8 @@
 import math
 
 def paint_calc(height, width, cover):
+    """Calculates how many paint cans needed with height, 
+    width and cover inputs. Rounds UP to closes hole paint can"""
     number_of_cans = round((height * width) / cover)
     rounded_up = math.ceil(number_of_cans)
     print(f"You'll need {rounded_up} cans of paint.")

@@ -15,6 +15,7 @@ for letter in solution_word:
 
 
 def print_game():
+    """Clears screen, prints logo, hangman and parts of the solution word."""
     global already_guessed
     global guess
     os.system("cls||clear")  # Clear terminal

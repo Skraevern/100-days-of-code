@@ -4,6 +4,7 @@ print(num_char)  # 5
 
 
 def my_function():
+    """Prints Hello world"""
     print("Hello")
     print("World")
 
