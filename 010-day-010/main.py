@@ -1,14 +1,5 @@
 import art
 
-num1 = ""
-num2 = ""
-num3 = ""
-operation_symbol = ""
-operations = ""
-answer = ""
-repeat = "y"
-
-
 def add(n1, n2):
     return n1 + n2
 
@@ -21,27 +12,25 @@ def multiply(n1, n2):
 def divide(n1, n2):
     return n1 / n2
 
-def user_inputs():
-    """Ask for number and operation"""
-    global num1, num2, operation_symbol
+def calculator():
+    """Asks for input, calculates inputs, repeats"""
+    repeat_calculator = True
+
     num1 = int(input("What's the first number?: "))
     for symbol in operations:
         print(symbol)
-    while len(operation_symbol) != 1:
-        operation_symbol = input(f"Pick an operation from the line above.\n{num1} ")
-    num2 = int(input(f"What's the second number?\n{num1} {operation_symbol} "))
+    while repeat_calculator:
+        operation_symbol = input(f"Pick an operation.\n{num1} ")
+        calculation_function = operations[operation_symbol]
+        num2 = int(input(f"What's the second number?\n{num1} {operation_symbol} "))
 
-def repeat_calculations():
-    global repeat, answer, operation_symbol
-    repeat = input(f'Type "y" to continue calculating with {answer}, or type "n" to exit.: ')
-    operation_symbol = "" 
-    num1 = answer
-    while len(operation_symbol) != 1:
-        operation_symbol = input(f"Pick an operation symbol.\n{answer} ")
-    num2 = int(input(f"Whats the new number?\n{answer} {operation_symbol} "))
-    answer = (calculation_function(num1, num2))
-    print(f"{num1} {operation_symbol} {num2} = {answer}")
-
+        answer = calculation_function(num1, num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        
+        if input(f'Type "y" to continue calculating with {answer}, press any key to restart. "control" + "c" to quit: ') != "y":
+            repeat_calculator = False
+            calculator()
+        num1 = answer
 
 operations = {
     "+": add,
@@ -51,10 +40,5 @@ operations = {
 }
 
 print(art.logo)
-user_inputs()
-calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
-print(f"{num1} {operation_symbol} {num2} = {answer}")
-while repeat == "y":
-    repeat_calculations()
+calculator()
 
