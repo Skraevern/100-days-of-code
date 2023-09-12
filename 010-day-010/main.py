@@ -50,6 +50,7 @@ operations = {
     "/": divide
 }
 
+print(art.logo)
 user_inputs()
 calculation_function = operations[operation_symbol]
 answer = calculation_function(num1, num2)
