@@ -36,4 +36,4 @@ def drink_potion2():
     print(player_health) # 10
 
 drink_potion2()
-game() # Error
+# game() # Error
