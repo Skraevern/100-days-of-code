@@ -35,31 +35,31 @@ def check_winner():
     global player_score, dealer_score
     print_logo()
     if player_score == 21:
-        print("                         BlackJack!")
+        print("                             BlackJack!")
     if player_score > 21:
         print_hands()
-        print("                        You bust. Dealer win.")
+        print("        You bust. Dealer win.")
     else:
         while dealer_score < 17 or dealer_score < player_score:
             dealer_cards.append(draw_card())
             dealer_score = calculate_scores(dealer_cards)
         
         if dealer_score == 21:
-            print("                    Dealer has BlackJack!")
+            print("                        Dealer has BlackJack!")
 
         print_hands()
         if dealer_score > 21:
-            print("                    Dealer bust. You win!")
+            print("        Dealer bust. You win!")
         elif player_score == dealer_score:
-            print("                    Draw")
+            print("        Draw")
         elif player_score > dealer_score:
-            print("                    You win!")
+            print("        You win!")
         else:
-            print("                    Dealer wins..")
+            print("        Dealer wins..")
 
 def print_hands():
-    print(f'            Your final hand: {player_cards}, final score: {player_score}')
-    print(f"            Dealers final hand: {dealer_cards}, final score: {dealer_score}")
+    print(f'    Your final hand: {player_cards}, final score: {player_score}')
+    print(f"    Dealers final hand: {dealer_cards}, final score: {dealer_score}")
 
 def draw_card():
     card = random.choice(cards)
@@ -77,9 +77,9 @@ def play_blackjack():
         player_score = calculate_scores(player_cards)
         dealer_score = calculate_scores(dealer_cards)
 
-        print(f"            Your cards: {player_cards}. Current score {player_score}")
-        print(f"            Dealers first card: {dealer_cards[0]}")
-        print(f"            Dealer cards: {dealer_cards}. Current score {dealer_score}")
+        print(f"    Your cards: {player_cards}. Current score {player_score}")
+        print(f"    Dealers first card: {dealer_cards[0]}")
+        print(f"    Dealer cards: {dealer_cards}. Current score {dealer_score}")
 
         if player_score > 20:
             want_to_play = "n"
