@@ -7,8 +7,9 @@ def higher_lower_game():
     first_guess = True
     continue_game = True
     score = 0
+    random_b = random.randint(0, len(game_data.DATA) - 1)
     while continue_game:
-        random_a = random.randint(0, len(game_data.DATA) - 1)
+        random_a = random_b
         random_b = random.randint(0, len(game_data.DATA) - 1)
         while random_a == random_b:
             random_b = random.randint(0, len(game_data.DATA) - 1)
