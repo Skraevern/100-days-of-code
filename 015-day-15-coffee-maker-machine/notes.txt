@@ -1,0 +1,35 @@
+Espresso: water 50ml, Coffee 18g
+Latte: water 200ml, coffee 24g, milk 150ml
+Cappuccino: water 250ml, coffee 24g, milk 100ml
+
+What would you like? (espresso/latte/cappuccino): report
+Water: 300ml
+Milk: 200ml
+Coffee: 100g
+Money: $0
+
+What would you like? (espresso/latte/cappuccino): latte
+Please insert coins.
+How many quarters?: 12
+How many dimes?: 12
+How many nickles?: 12
+How many pennies?: 12 
+Here is you $2.42 in change.
+Here is your latte ☕️ Enjoy!
+
+What would you like? (espresso/latte/cappuccino): report
+Water: 100ml
+Milk: 50ml
+Coffee: 76g
+Money: $2.5
+
+What would you like? (espresso/latte/cappuccino): cappuccino
+Sorry there is not enough water.
+
+What would you like? (espresso/latte/cappuccino): cappuccino
+
+1. Print report
+2. check resources sufficient
+3. Process coins
+4. Check transaction succesfull
+5. Make coffee
