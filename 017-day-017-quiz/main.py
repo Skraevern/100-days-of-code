@@ -8,9 +8,12 @@ os.system("cls||clear")
 question_bank = []
 
 for i in range(0, len(question_data)):
-    question = Question(question_data[i]["text"], question_data[i]["answer"])
+    question = Question(
+        question_data[i]["question"], question_data[i]["correct_answer"]
+    )
     question_bank.append(question)
 
+print(question_bank[0].answer)
 quiz = QuizBrain(question_bank)
 
 while quiz.still_has_questions():

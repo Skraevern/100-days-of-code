@@ -22,7 +22,7 @@ class QuizBrain:
         else:
             print("That's wrong")
         print(
-            f"The correct answer was {self.question_list[self.question_number].text}."
+            f"The correct answer was {self.question_list[self.question_number].answer}."
         )
         print(
             f"Your current score is: {self.correct_answers}/{self.question_number + 1}"
