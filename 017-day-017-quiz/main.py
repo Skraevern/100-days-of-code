@@ -11,8 +11,6 @@ for key in question_data:
     print(key)
 category = input("Type in quiz category: ").title()
 
-print(len(question_data[category]))
-
 if category in question_data:
     for i in range(0, len(question_data[category])):
         question = Question(
