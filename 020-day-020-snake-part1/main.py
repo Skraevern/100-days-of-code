@@ -17,6 +17,10 @@ screen.onkey(key="w", fun=snake.turn_north)
 screen.onkey(key="s", fun=snake.turn_south)
 screen.onkey(key="a", fun=snake.turn_west)
 screen.onkey(key="d", fun=snake.turn_east)
+screen.onkey(key="Up", fun=snake.turn_north)
+screen.onkey(key="Down", fun=snake.turn_south)
+screen.onkey(key="Left", fun=snake.turn_west)
+screen.onkey(key="Right", fun=snake.turn_east)
 
 
 game_over = False
