@@ -46,3 +46,11 @@ class Snake:
     def turn_east(self):
         if self.head.heading() != WEST:
             self.head.setheading(EAST)
+
+    def grow_snake(self):
+        self.last_segment_pos = self.segment_list[-1].pos()
+        self.segment = Turtle("square")
+        self.segment.penup()
+        self.segment.color("white")
+        self.segment.goto(self.last_segment_pos)
+        self.segment_list.append(self.segment)

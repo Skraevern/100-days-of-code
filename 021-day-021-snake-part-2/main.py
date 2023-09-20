@@ -1,6 +1,6 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from snake import Snake
-import random
+from food import Food
 import time
 
 
@@ -10,7 +10,9 @@ screen.bgcolor("black")
 screen.title("Snake")
 screen.tracer(0)
 
+score = 0
 snake = Snake()
+food = Food()
 
 screen.listen()
 screen.onkey(key="w", fun=snake.turn_north)
@@ -28,14 +30,12 @@ while game_over == False:
     screen.update()
     time.sleep(0.1)
     snake.move()
-    # if (
-    #     (segment_list[0].xcor() > 280)
-    #     or (segment_list[0].xcor() < -300)
-    #     or (segment_list[0].ycor() > 280)
-    #     or (segment_list[0].ycor() < -300)
-    # ):
-    #     print("Over!")
-    #     game_over = True
 
+    # Detect collision with food
+    if snake.head.distance(food) < 15:
+        food.hideturtle()
+        food = Food()
+        score += 1
+        snake.grow_snake()
 
 screen.exitonclick()
