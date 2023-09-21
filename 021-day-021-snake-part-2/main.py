@@ -10,6 +10,7 @@ WEST_WALL = -300
 EAST_WALL = 280
 
 screen = Screen()
+screen.colormode(255)
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Snake")
@@ -37,19 +38,26 @@ while game_over == False:
     time.sleep(0.1)
     snake.move()
 
+    # Detect collision with wall
     if (
         (snake.head.ycor() > NORTH_WALL)
         or (snake.head.ycor() < SOUTH_WALL)
         or (snake.head.xcor() < WEST_WALL)
         or (snake.head.xcor() > EAST_WALL)
     ):
+        score_board.game_over()
         game_over = True
+
+    # Detect collision with tail
+    for i in range(1, len(snake.segment_list)):
+        if snake.head.distance(snake.segment_list[i]) < 10:
+            score_board.game_over()
+            game_over = True
 
     # Detect collision with food
     if snake.head.distance(food) < 15:
         food.refresh()
         score_board.increase_score()
-        print(score)
         snake.grow_snake()
 
 

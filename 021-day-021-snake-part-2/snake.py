@@ -6,6 +6,7 @@ NORTH = 90
 SOUTH = 270
 WEST = 180
 EAST = 0
+SNAKE_Color = (255, 16, 240)
 
 
 class Snake:
@@ -47,7 +48,7 @@ class Snake:
     def grow_snake(self):
         segment = Turtle("square")
         segment.penup()
-        segment.color("white")
+        segment.color(255, 16, 240)
         if self.segment_list:
             segment.goto(self.segment_list[-1].pos())
         self.segment_list.append(segment)
