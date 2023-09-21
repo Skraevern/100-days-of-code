@@ -4,7 +4,7 @@ import random
 NORTH = 90
 SOUTH = 270
 SPEED = 30
-COMPUTER_SPEED = 4
+COMPUTER_SPEED = 10
 RANDOM_HEADING = [NORTH, SOUTH]
 
 
@@ -30,6 +30,9 @@ class Paddle(Turtle):
         self.penup()
         self.color("white")
         self.shapesize(stretch_len=5, stretch_wid=1)
+
+    def reset_pos(self, coordinates):
+        self.goto(coordinates)
 
     def computer_move(self, ball_y, ball_x, difficulty):
         if ball_x > difficulty:
