@@ -32,6 +32,7 @@ screen.onkey(key="Down", fun=computer_paddle.move_down)
 
 
 while game_over == False:
+    time.sleep(0.05)
     screen.update()
     ball.move()
     computer_paddle.computer_move(ball.ycor(), ball.xcor(), DIFFICULTY_LIST[4])
