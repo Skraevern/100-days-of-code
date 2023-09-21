@@ -3,6 +3,10 @@ from snake import Snake
 from food import Food
 import time
 
+NORTH_WALL = 300
+SOUTH_WALL = -280
+WEST_WALL = -300
+EAST_WALL = 280
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -31,11 +35,19 @@ while game_over == False:
     time.sleep(0.1)
     snake.move()
 
+    if (
+        (snake.head.ycor() > NORTH_WALL)
+        or (snake.head.ycor() < SOUTH_WALL)
+        or (snake.head.xcor() < WEST_WALL)
+        or (snake.head.xcor() > EAST_WALL)
+    ):
+        game_over = True
+
     # Detect collision with food
     if snake.head.distance(food) < 15:
-        food.hideturtle()
-        food = Food()
+        food.refresh()
         score += 1
+        print(score)
         snake.grow_snake()
 
 screen.exitonclick()

@@ -17,18 +17,15 @@ class Snake:
 
     def create_snake(self):
         for i in range(3):
-            self.segment = Turtle("square")
-            self.segment.penup()
-            self.segment.color("white")
-            self.segment.goto(STARTING_POSITIONS[i])
-            self.segment_list.append(self.segment)
+            self.grow_snake()
+            self.segment_list[i].goto(STARTING_POSITIONS[i])
 
     def move(self):
         """Moves snake forward"""
         for i in range(len(self.segment_list) - 1, 0, -1):
-            self.new_x = self.segment_list[i - 1].xcor()
-            self.new_y = self.segment_list[i - 1].ycor()
-            self.segment_list[i].goto(self.new_x, self.new_y)
+            new_x = self.segment_list[i - 1].xcor()
+            new_y = self.segment_list[i - 1].ycor()
+            self.segment_list[i].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
     def turn_north(self):
@@ -48,9 +45,9 @@ class Snake:
             self.head.setheading(EAST)
 
     def grow_snake(self):
-        self.last_segment_pos = self.segment_list[-1].pos()
-        self.segment = Turtle("square")
-        self.segment.penup()
-        self.segment.color("white")
-        self.segment.goto(self.last_segment_pos)
-        self.segment_list.append(self.segment)
+        segment = Turtle("square")
+        segment.penup()
+        segment.color("white")
+        if self.segment_list:
+            segment.goto(self.segment_list[-1].pos())
+        self.segment_list.append(segment)
