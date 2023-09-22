@@ -9,6 +9,11 @@ screen.setup(width=600, height=600)
 screen.tracer(0)
 
 player = Player()
+car_list = []
+for i in range(40):
+    car = CarManager()
+    car_list.append(car)
+
 
 screen.listen()
 screen.onkey(key="Up", fun=player.move_up)
@@ -21,3 +26,7 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+    for car in car_list:
+        car.move()
+        if car.xcor() < -310:
+            car.random_xcor()
