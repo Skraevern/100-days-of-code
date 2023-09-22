@@ -4,8 +4,14 @@ from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
+WIDTH = 600
+HEIGHT = 600
+LEFT_WALL = WIDTH * -1 / 2 - 10
+
+score = 0
+
 screen = Screen()
-screen.setup(width=600, height=600)
+screen.setup(width=WIDTH, height=HEIGHT)
 screen.tracer(0)
 
 player = Player()
@@ -28,5 +34,9 @@ while game_is_on:
     screen.update()
     for car in car_list:
         car.move()
-        if car.xcor() < -310:
+        if car.xcor() < LEFT_WALL:
             car.random_xcor()
+    if player.ycor() > HEIGHT / 2:
+        player.reset_starting_pos()
+        score += 1
+        print(score)
