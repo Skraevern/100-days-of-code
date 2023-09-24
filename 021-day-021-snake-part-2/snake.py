@@ -52,3 +52,10 @@ class Snake:
         if self.segment_list:
             segment.goto(self.segment_list[-1].pos())
         self.segment_list.append(segment)
+
+    def reset(self):
+        for segments in self.segment_list:
+            segments.goto(1000, 1000)  # Moves them off screen
+        self.segment_list.clear()
+        self.create_snake()
+        self.head = self.segment_list[0]

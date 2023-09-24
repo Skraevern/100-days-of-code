@@ -45,14 +45,14 @@ while game_over == False:
         or (snake.head.xcor() < WEST_WALL)
         or (snake.head.xcor() > EAST_WALL)
     ):
-        score_board.game_over()
-        game_over = True
+        score_board.reset()
+        snake.reset()
 
     # Detect collision with tail
     for segment in snake.segment_list[1:]:
         if snake.head.distance(segment) < 10:
-            score_board.game_over()
-            game_over = True
+            score_board.reset()
+            snake.reset()
 
     # Detect collision with food
     if snake.head.distance(food) < 15:
