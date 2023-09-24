@@ -38,5 +38,7 @@ while game_is_on:
             car.random_xcor()
     if player.ycor() > HEIGHT / 2:
         player.reset_starting_pos()
+        for car in car_list:
+            car.increase_speed()
         score += 1
         print(score)
