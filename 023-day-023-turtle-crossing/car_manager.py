@@ -29,7 +29,6 @@ class CarManager(Turtle):
 
     def set_move_speed(self):
         self.move_distance = random.randint(self.random_min, self.random_max)
-        print(self.move_distance)
 
     def increase_speed(self):
         self.random_min += MOVE_INCREMENT

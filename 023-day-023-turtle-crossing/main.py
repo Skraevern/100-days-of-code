@@ -32,12 +32,17 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    for car in car_list:
+    for car in car_list:  # Gets all cars moving
         car.move()
-        if car.xcor() < LEFT_WALL:
+        if car.xcor() < LEFT_WALL:  # Resets car
             car.random_xcor()
-    if player.ycor() > HEIGHT / 2:
+        if player.distance(car) < 20:  # Detects car hit
+            score_board.game_over()
+            game_is_on = False
+    if player.ycor() > HEIGHT / 2:  # Finish line
         player.reset_starting_pos()
         for car in car_list:
             car.increase_speed()
         score_board.increase_score()
+
+screen.exitonclick()
