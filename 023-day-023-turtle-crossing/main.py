@@ -7,6 +7,12 @@ from scoreboard import ScoreBoard
 WIDTH = 600
 HEIGHT = 600
 LEFT_WALL = WIDTH * -1 / 2 - 10
+NUMBER_OF_CARS = 40
+car_list = []
+
+for i in range(NUMBER_OF_CARS):
+    car = CarManager()
+    car_list.append(car)
 
 score_board = ScoreBoard(WIDTH, HEIGHT)
 
@@ -15,11 +21,6 @@ screen.setup(width=WIDTH, height=HEIGHT)
 screen.tracer(0)
 
 player = Player()
-car_list = []
-for i in range(40):
-    car = CarManager()
-    car_list.append(car)
-
 
 screen.listen()
 screen.onkey(key="Up", fun=player.move_up)
