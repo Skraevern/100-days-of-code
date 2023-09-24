@@ -2,13 +2,13 @@ import time
 from turtle import Screen
 from player import Player
 from car_manager import CarManager
-from scoreboard import Scoreboard
+from scoreboard import ScoreBoard
 
 WIDTH = 600
 HEIGHT = 600
 LEFT_WALL = WIDTH * -1 / 2 - 10
 
-score = 0
+score_board = ScoreBoard(WIDTH, HEIGHT)
 
 screen = Screen()
 screen.setup(width=WIDTH, height=HEIGHT)
@@ -40,5 +40,4 @@ while game_is_on:
         player.reset_starting_pos()
         for car in car_list:
             car.increase_speed()
-        score += 1
-        print(score)
+        score_board.increase_score()

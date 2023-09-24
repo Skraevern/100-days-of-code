@@ -24,7 +24,7 @@ class CarManager(Turtle):
         self.forward(self.move_distance)
 
     def random_xcor(self):
-        self.goto(random.randint(310, 400), random.randint(-260, 290))
+        self.goto(random.randint(310, 400), random.randint(-250, 290))
         self.set_move_speed()
 
     def set_move_speed(self):
