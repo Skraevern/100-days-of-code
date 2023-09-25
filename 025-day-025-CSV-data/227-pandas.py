@@ -31,3 +31,14 @@ print(csv_data)
 # 4     Friday    21     Sunny
 # 5   Saturday    22     Sunny
 # 6     Sunday    24     Sunny
+
+csv_temperature = csv_data["temp"]
+print(csv_temperature)
+# 0    12
+# 1    14
+# 2    15
+# 3    14
+# 4    21
+# 5    22
+# 6    24
+# Name: temp, dtype: int64
