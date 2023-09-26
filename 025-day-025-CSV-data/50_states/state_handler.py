@@ -5,7 +5,7 @@ class StateWriter(Turtle):
     def __init__(self) -> None:
         super().__init__()
         self.penup()
-        self.speed(1)
+        self.speed(3)
 
     def write_state(self, state, x, y):
         self.setheading(self.towards(x, y))
