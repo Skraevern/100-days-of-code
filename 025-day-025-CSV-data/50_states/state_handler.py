@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 
-class StateObject(Turtle):
+class StateWriter(Turtle):
     def __init__(self) -> None:
         super().__init__()
         self.penup()

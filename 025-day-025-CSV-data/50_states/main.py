@@ -1,6 +1,6 @@
 import turtle
 import pandas
-from state_handler import StateObject
+from state_handler import StateWriter
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
@@ -9,7 +9,7 @@ screen.addshape(image)
 
 turtle.shape(image)
 
-state = StateObject()
+arrow = StateWriter()
 
 
 # def get_mouse_click_coor(x, y):
@@ -25,13 +25,11 @@ game_is_on = True
 while game_is_on:
     answer_state = screen.textinput(
         title="Guess the State", prompt="What's another state's name?"
-    )
+    ).title()
 
     if answer_state in states_list:
         state_row = data[data.state == answer_state]
-        x = state_row.x.item()
-        y = state_row.y.item()
-        state.write_state(answer_state, x, y)
+        arrow.write_state(answer_state, state_row.x.item(), state_row.y.item())
 
 
 turtle.mainloop()
