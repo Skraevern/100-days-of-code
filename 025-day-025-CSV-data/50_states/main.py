@@ -35,9 +35,6 @@ while len(guessed_states) < 50:
         score += 1
         screen.title(f"U.S. States Game.")
 
-remaining_states = []
-for state in states_list:
-    if state not in guessed_states:
-        remaining_states.append(state)
+remaining_states = [state for state in states_list if state not in guessed_states]
 remaining_states_frame = pandas.DataFrame(remaining_states)
 remaining_states_frame.to_csv("./states_to_learn")
