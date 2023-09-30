@@ -1,0 +1,7 @@
+repeat 4 times
+1: Decide on task to be done
+2: Set timer to 25 min
+3: Work on task
+4: 5 min timer break
+
+5: Take 15-30 min break
