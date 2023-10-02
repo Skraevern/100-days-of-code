@@ -11,6 +11,7 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 CHECK_MARK = "✔"
+reps = 7
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
@@ -20,7 +21,18 @@ def reset():
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start():
-    count_down(WORK_MIN * 60)
+    global reps, check_mark_str
+    reps += 1
+    if reps in (1, 3, 5, 7):
+        timer_label.config(text="Work", fg=GREEN)
+        count_down(WORK_MIN * 60)
+    if reps in (2, 4, 6):
+        timer_label.config(text="Break", fg=PINK)
+        count_down(SHORT_BREAK_MIN * 60)
+    if reps == 8:
+        reps = 0
+        timer_label.config(text="Break", fg=RED)
+        count_down(LONG_BREAK_MIN * 60)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
@@ -34,6 +46,8 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
         window.after(1000, count_down, count - 1)
+    else:
+        start()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
