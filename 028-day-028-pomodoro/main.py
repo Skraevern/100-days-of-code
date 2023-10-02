@@ -11,17 +11,25 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 CHECK_MARK = "✔"
-reps = 7
+reps = 0
+timer = None
+check_mark_str = None
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset():
-    pass
+    global timer, check_mark_str, reps
+    window.after_cancel(timer)
+    timer_label.config(text="Timer")
+    check_mark_str = None
+    check_label.config(text=check_mark_str)
+    canvas.itemconfig(timer_text, text="00:00")
+    reps = 0
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start():
-    global reps, check_mark_str
+    global reps
     reps += 1
     if reps in (1, 3, 5, 7):
         timer_label.config(text="Work", fg=GREEN)
@@ -37,6 +45,7 @@ def start():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
+    global check_mark_str, timer
     count_min = math.floor(count / 60)
     count_sec = count % 60
     if count_min < 10:
@@ -45,9 +54,12 @@ def count_down(count):
         count_sec = f"0{count_sec}"
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        timer = window.after(1000, count_down, count - 1)
     else:
         start()
+        if reps % 2 == 0:
+            check_mark_str += CHECK_MARK
+            check_label.config(text=check_mark_str)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -71,7 +83,7 @@ timer_text = canvas.create_text(
 )
 canvas.grid(column=2, row=2)
 
-check_mark_str = CHECK_MARK
+check_mark_str = None
 check_label = Label(
     text=check_mark_str, bg=YELLOW, fg=GREEN, font=(FONT_NAME, 30, "normal")
 )
