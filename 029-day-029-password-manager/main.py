@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import pyperclip
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -9,6 +10,7 @@ def gen_psw():
 
     password_output.delete(0, END)
     password_output.insert(END, string=generator.password)
+    pyperclip.copy(generator.password)
     reload(generator)
 
 
