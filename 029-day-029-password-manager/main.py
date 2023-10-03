@@ -1,17 +1,44 @@
 from tkinter import *
+from tkinter import messagebox
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+def gen_psw():
+    from importlib import reload
+    import generator
+
+    password_output.delete(0, END)
+    password_output.insert(END, string=generator.password)
+    reload(generator)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_psw():
-    with open("passwords.txt", mode="a") as file:
-        file.write(
-            f"\n{website_input.get()} | {email_input.get()} | {password_output.get()}"
+    website = website_input.get()
+    email = email_input.get()
+    password = password_output.get()
+
+    if (len(website) == 0) or (len(email) == 0) or (len(password)) == 0:
+        messagebox.showerror(title="Ooops", message="Missing inputs!")
+    else:
+        is_ok = messagebox.askokcancel(
+            title="Password Manager",
+            message=f"These are the details entered:\n"
+            f"\n"
+            f"Website: {website}\n"
+            f"\n"
+            f"Email/Username: {email}\n"
+            f"\n"
+            f"Password: {password}\n"
+            f"\n"
+            f"Is it okay to save?",
         )
-    website_input.delete(0, END)
-    password_output.delete(0, END)
-    website_input.focus()
+        if is_ok:
+            with open("passwords.txt", mode="a") as file:
+                file.write(f"\n{website} | {email} | {password}")
+            website_input.delete(0, END)
+            password_output.delete(0, END)
+            website_input.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -52,7 +79,7 @@ add_btn = Button(text="Add", width=42, command=save_psw)
 add_btn.grid(column=2, row=5, columnspan=2, sticky="w")
 
 # Column 3
-gen_psw_btn = Button(text="Generate Password")
+gen_psw_btn = Button(text="Generate Password", command=gen_psw)
 gen_psw_btn.grid(column=3, row=4)
 
 window.mainloop()
