@@ -38,14 +38,18 @@ def save_psw():
             f"Is it okay to save?",
         )
         if is_ok:
-            with open("passwords.json", mode="r") as file:
-                # Reading old data
-                data = json.load(file)
-                # Updating old data
-                data.update(new_data)
-            with open("passwords.json", "w") as file:
-                # Saving updated data
-                json.dump(data, file, indent=4)
+            try:
+                with open("passwords.json", mode="r") as file:
+                    # Reading old data
+                    data = json.load(file)
+                    # Updating old data
+                    data.update(new_data)
+                with open("passwords.json", mode="w") as file:
+                    # Saving updated data
+                    json.dump(data, file, indent=4)
+            except FileNotFoundError: # if no file. Write new.
+                with open("passwords.json", mode="w") as file:
+                    json.dump(new_data, file, indent=4)
 
             website_input.delete(0, END)
             password_output.delete(0, END)
