@@ -1,7 +1,22 @@
 from tkinter import *
+import pandas
+import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 
+
+# ---Change words --- #
+def change_words():
+    random_word = data_dict[random.randint(0, len(data_dict) - 1)]["French"]
+    canvas.itemconfig(word_text, text=random_word)
+
+
+# ---Data--- #
+with open("./data/french_words.csv") as file:
+    data = pandas.read_csv(file)
+    data_dict = data.to_dict(orient="records")
+
+# ----UI---- #
 window = Tk()
 window.title("Flash Card Language Learner")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
@@ -23,10 +38,11 @@ word_text = canvas.create_text(
 right_img = PhotoImage(file="./images/right.png")
 wrong_img = PhotoImage(file="./images/wrong.png")
 
-right_btn = Button(image=right_img, highlightthickness=0)
+right_btn = Button(image=right_img, highlightthickness=0, command=change_words)
 right_btn.grid(column=1, row=2)
 
-wrong_btn = Button(image=wrong_img, highlightthickness=0)
+wrong_btn = Button(image=wrong_img, highlightthickness=0, command=change_words)
 wrong_btn.grid(column=2, row=2)
 
+change_words()
 window.mainloop()
