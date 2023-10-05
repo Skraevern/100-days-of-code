@@ -1,7 +1,7 @@
 import smtplib
 
 gmail = "kristian.skreosen.test@gmail.com"  # smtp.gmail.com
-gmail_password = ""
+gmail_password = ""  # app password
 yahoo = "kristianskreosen.test@yahoo.com"  # smtp.mail.yahoo.com
 
 with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
