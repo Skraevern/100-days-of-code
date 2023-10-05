@@ -15,7 +15,8 @@ def canvas_config(word, language, image, color):
 # --- Flip Card --- #
 def flip_card():
     global random_index
-    english_word = data_dict[random_index]["English"]
+    words_to_learn = read_file()
+    english_word = words_to_learn[random_index]["English"]
     canvas_config(english_word, "English", card_back_img, "white")
 
 
@@ -23,16 +24,36 @@ def flip_card():
 def change_words():
     global random_index, flip_card_timer
     window.after_cancel(flip_card_timer)
-    random_index = random.randint(0, len(data_dict) - 1)
-    french_word = data_dict[random_index]["French"]
+    words_to_learn = read_file()
+    random_index = random.randint(0, len(words_to_learn) - 1)
+    french_word = words_to_learn[random_index]["French"]
     canvas_config(french_word, "French", card_front_img, "black")
     flip_card_timer = window.after(3000, func=flip_card)
 
 
+# --- Learned word btn --- #
+def learned_word():
+    global random_index
+    words_to_learn = read_file()
+    words_to_learn.remove(words_to_learn[random_index])
+    words_to_learn_data_frame = pandas.DataFrame(words_to_learn)
+    words_to_learn_data_frame.to_csv("./data/words_to_learn.csv")
+    change_words()
+
+
 # ---Data--- #
-with open("./data/french_words.csv") as file:
-    data = pandas.read_csv(file)
-    data_dict = data.to_dict(orient="records")
+def read_file():
+    try:
+        with open("./data/words_to_learn.csv", "r") as file:
+            data = pandas.read_csv(file)
+            words = data.to_dict(orient="records")
+    except FileNotFoundError:
+        with open("./data/french_words.csv", "r") as file:
+            data = pandas.read_csv(file)
+            words = data.to_dict(orient="records")
+    finally:
+        return words
+
 
 # ----UI---- #
 window = Tk()
@@ -58,7 +79,7 @@ word_text = canvas.create_text(
 right_img = PhotoImage(file="./images/right.png")
 wrong_img = PhotoImage(file="./images/wrong.png")
 
-right_btn = Button(image=right_img, highlightthickness=0, command=change_words)
+right_btn = Button(image=right_img, highlightthickness=0, command=learned_word)
 right_btn.grid(column=1, row=2)
 
 wrong_btn = Button(image=wrong_img, highlightthickness=0, command=change_words)
