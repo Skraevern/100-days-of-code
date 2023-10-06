@@ -1,10 +1,14 @@
 from tkinter import *
 import requests
 
+API = "https://kanye.rest"
+
 
 def get_quote():
     # Write your code here.
-    quote = requests.get(url="https://api.kanye.rest/").json()
+    response = requests.get(url=API)
+    response.raise_for_status()
+    quote = response.json()
     # {'quote': "I'd like to meet with Tim Cook. I got some ideas"}
     canvas.itemconfig(quote_text, text=quote["quote"])
 
