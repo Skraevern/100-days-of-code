@@ -1,6 +1,6 @@
 import requests
 
-API = "http://open-notify.org/Open-Notify-API/ISS-Location-Now/"
+API = "http://api.open-notify.org/iss-now.json"
 
 response = requests.get(url=API)
 print(response)  # <Response [200]>
