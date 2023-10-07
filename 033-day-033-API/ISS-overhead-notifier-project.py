@@ -48,7 +48,7 @@ def is_dark():
 
 def send_mail():
     gmail = "kristian.skreosen.test@gmail.com"  # smtp.gmail.com
-    gmail_password = ""  # app password
+    gmail_password = "qgow znse zjbi cjpz"  # app password
     iss_pos = iss_lat_long()
     with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         connection.starttls()
