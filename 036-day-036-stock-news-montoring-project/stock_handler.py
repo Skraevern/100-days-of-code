@@ -10,7 +10,6 @@ PARAMETERS = {
     "interval": "60min",
     "apikey": os.environ.get("ALPHAVANTAGE_KEY"),
 }
-print(PARAMETERS)
 
 
 class StockHandler:
@@ -24,22 +23,21 @@ class StockHandler:
         price = None
         index = day_index
         while price == None:
-            try:
-                index += 1
-                price = self.data["Time Series (60min)"][
-                    f"{today - timedelta(days=index)} 19:00:00"
-                ]["4. close"]
-            except KeyError:
-                continue
+            if index < 100:
+                try:
+                    index += 1
+                    price = self.data["Time Series (60min)"][
+                        f"{today - timedelta(days=index)} 19:00:00"
+                    ]["4. close"]
+                except KeyError:
+                    continue
+                else:
+                    break
             else:
-                break
+                return None
         return float(price)
 
     def get_diff_percentage(self, num_1, num_2):
         diff = num_1 - num_2
         percentage = (diff / num_1) * 100
         return percentage
-
-
-test = StockHandler()
-print(test.price1, test.price2)
