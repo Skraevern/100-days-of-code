@@ -1,13 +1,14 @@
 import smtplib
 import datetime as dt
 import random
+import os
 
 gmail = "kristian.skreosen.test@gmail.com"  # smtp.gmail.com
-gmail_password = ""  # app password
+gmail_password = os.environ.get("PYTHON_MAIL_PASSWORD")  # app password
 
 now = dt.datetime.now()
 weekday = now.weekday()
-if weekday == 4:
+if weekday == 0:
     with open(file="quotes.txt") as file:
         all_quotes = file.readlines()
 
