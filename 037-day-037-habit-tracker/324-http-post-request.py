@@ -1,12 +1,14 @@
 import requests
+import os
 
 # Create user at:
 # https://pixe.la
 
+TOKEN = os.environ.get("PIXELA_TOKEN")
 pixela_endpoint = "https://pixe.la/v1/users"  # API
 
 user_params = {
-    "token": "zn6nbdte9u4exytzr",
+    "token": TOKEN,
     "username": "skraevern",
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
