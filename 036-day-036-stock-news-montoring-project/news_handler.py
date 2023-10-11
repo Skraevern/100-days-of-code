@@ -1,10 +1,12 @@
 import os
 import requests
+import datetime
+from datetime import timedelta
 
 API = "https://newsapi.org/v2/everything"  # ?q=tesla&from=2023-09-10&sortBy=publishedAt&apiKey=
 PARAMETERS = {
     "q": "tesla",
-    "from": "2023-09-10",
+    "from": f"{datetime.date.today() - timedelta(days=10)}",
     "sortBy": "publishedAt",
     "apiKey": os.environ.get("NEWSAPIDOTORG_KEY"),
     "language": "en",
