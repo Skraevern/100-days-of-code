@@ -5,4 +5,4 @@ class FlightSearch:
         pass
 
     def search(self, city):
-        print(f"TESTING {city}")
+        return f"TESTING"

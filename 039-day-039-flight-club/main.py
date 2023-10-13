@@ -10,6 +10,8 @@ sheet_data = data_manager.get_sheet()
 
 flight_search = FlightSearch()
 
-for column in sheet_data["prices"]:
-    if column["iataCode"] == "":
-        flight_search.search(column["city"])
+for row in sheet_data["prices"]:
+    if row["iataCode"] == "":
+        iataCode = flight_search.search(row["city"])
+        row["iataCode"] = iataCode
+        data_manager.update_iataCode(row)
