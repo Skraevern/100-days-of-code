@@ -1,0 +1,22 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 1fr 1fr;
+  background-color: black;
+  color: white;
+  justify-items: center;
+  font-family: "Libre Baskerville", serif;
+}
+img {
+  border: 5px solid white;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+h1 {
+  font-size: 50px;
+  align-self: center;
+}
+p {
+  align-self: start;
+  margin-top: 0;
+}
