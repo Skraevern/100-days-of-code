@@ -15,7 +15,7 @@ CLIENT_SECRET = os.environ.get("SPOTIPY_CLIENT_SECRET")
 # print(CLIENT_ID)
 # print(CLIENT_SECRET)
 
-
+# --- Scraping
 website = requests.get(f"{URL}{user_input}")
 with open("./billboard-hot-100", "wb+") as file:
     file.write(website.content)
@@ -25,14 +25,15 @@ with open("./billboard-hot-100", "r") as file:
 
 soup = BeautifulSoup(contents, "html.parser")
 
-lists = soup.find_all(name="li", class_="o-chart-results-list__item")
-songs = []
-for i in lists:
-    if i.find(name="h3") != None:
-        h3 = i.find(name="h3")
-        song = h3.string.strip()
-        songs.append(song)
+songs = soup.find_all(name="h3", id="title-of-a-story", class_="u-line-height-125")
+song_titles = [title.getText().strip("\n\t") for title in songs]
+artists = soup.find_all(name="span", class_="u-max-width-330")
+artist_names = [name.getText().strip("\n\t") for name in artists]
+song_and_artist = dict(zip(song_titles, artist_names))
 
+print(song_and_artist)
+
+# --- Spotify Authentication
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
         scope="playlist-modify-private",
@@ -45,3 +46,25 @@ sp = spotipy.Spotify(
     )
 )
 user_id = sp.current_user()["id"]
+
+
+# --- Search Spotify for song by title and artist
+song_uris = []
+for song, artist in song_and_artist.items():
+    try:
+        result = sp.search(q=f"track:{song} artist: {artist}", type="track")
+        uri = result["tracks"]["items"][0]["uri"]
+        song_uris.append(uri)
+    except:
+        pass
+
+print(f"Number of songs found: {len(song_uris)}")
+
+# Create new private playlist in Spotify
+playlist = sp.user_playlist_create(
+    user=user_id,
+    name=f"{user_input} Billboard 100",
+    public=False,
+)
+sp.playlist_add_items(playlist_id=["id"], items=song_uris)
+print(f"New playlist '{user_input} Billboard 100' succsessfully created on Spotify")
