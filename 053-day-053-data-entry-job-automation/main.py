@@ -23,9 +23,21 @@ with open("./website.html", "r") as file:
 
 soup = BeautifulSoup(contents, "html.parser")
 
-soup_prices = soup.find_all("span", attrs={"data-test": "property-card-price"})
+soup_container = soup.find("div", attrs={"id": "search-page-list-container"})
+
+soup_prices = soup_container.find_all(
+    "span", attrs={"data-test": "property-card-price"}
+)
+soup_links = soup_container.find_all(name="a", href=True)
+
 prices = []
+link = []
+
 for soup in soup_prices:
     prices.append(soup.text)
 
 print(prices)
+print(len(prices))
+print(len(soup_links))
+
+test = 2
