@@ -23,21 +23,19 @@ with open("./website.html", "r") as file:
 
 soup = BeautifulSoup(contents, "html.parser")
 
-soup_container = soup.find("div", attrs={"id": "search-page-list-container"})
-
-soup_prices = soup_container.find_all(
-    "span", attrs={"data-test": "property-card-price"}
-)
-soup_links = soup_container.find_all(name="a", href=True)
-
 prices = []
-link = []
+links = []
+adresses = []
 
-for soup in soup_prices:
-    prices.append(soup.text)
+for price in soup.find_all("span", attrs={"data-test": "property-card-price"}):
+    prices.append(price.text)
 
-print(prices)
-print(len(prices))
-print(len(soup_links))
+for link in soup.find_all("a", attrs={"data-test": "property-card-link"}):
+    if link.get("href")[0] == "/":
+        links.append(f'https://www.zillow.com{link.get("href")}')
+    else:
+        links.append(link.get("href"))
+links = list(dict.fromkeys(links))
 
-test = 2
+for adress in soup.find_all("address", attrs={"data-test": "property-card-addr"}):
+    adresses.append(adress.text)
